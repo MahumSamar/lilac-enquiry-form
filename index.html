@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enquiry — Let's connect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&family=Instrument+Serif:ital@0;1&family=Inter:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #fffcf2;
+    --lilac: #ebcffc;
+    --ink: #3a2636;
+    --ink-soft: #6e5573;
+    --rule: rgba(58, 38, 54, 0.32);
+
+    --display: "Instrument Serif", "Times New Roman", serif;
+    --body: "Inter", "Helvetica Neue", Arial, sans-serif;
+    --mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+    --frame: clamp(8px, 1.5vw, 24px);      /* cream gutter around the painting */
+    --inset: clamp(10px, 1.5vw, 24px);     /* lilac gap outside the inner rule */
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body { margin: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ---------- Section ---------- */
+
+  .enquiry {
+    position: relative;
+    height: 100vh;
+    height: 100svh;
+    min-height: 600px;
+    padding: 4px var(--frame) 0;
+    background: var(--cream);
+    display: grid;
+  }
+
+  .enquiry__stage {
+    position: relative;
+    display: grid;
+    place-items: center;
+    padding: clamp(12px, 8.4vh, 78px) clamp(12px, 3vw, 40px) clamp(12px, 1.4vh, 13px);
+    border-radius: 16px 16px 0 0;
+    overflow: hidden;
+    background: #ece3cf;
+    isolation: isolate;
+  }
+
+  .enquiry__media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: -1;
+  }
+
+  /* ---------- Card ---------- */
+
+  .card {
+    width: min(810px, 100%);
+    padding: var(--inset);
+    background: var(--lilac);
+    border-radius: 16px;
+  }
+
+  .card__inner {
+    border: 1.5px solid var(--ink);
+    border-radius: 14px;
+    padding: clamp(28px, 6.6vh, 62px) clamp(16px, 3.6vw, 29px) clamp(32px, 7vh, 65px);
+    text-align: center;
+  }
+
+  .card__title {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(42px, min(8.2vh, 6.6vw), 76px);
+    line-height: 0.885;
+    letter-spacing: -0.034em;
+    text-wrap: balance;
+  }
+
+  .card__lede {
+    max-width: 26.8em;
+    margin: clamp(18px, 4.2vh, 40px) auto 0;
+    font-size: clamp(15px, 1.95vh, 18px);
+    line-height: 1.29;
+    letter-spacing: -0.02em;
+  }
+
+  /* ---------- Form ---------- */
+
+  .form {
+    margin-top: clamp(20px, 4.8vh, 44px);
+    text-align: left;
+  }
+
+  .field {
+    position: relative;
+    display: block;
+    border-bottom: 1px solid var(--rule);
+    transition: border-color 0.2s ease;
+  }
+
+  .field:focus-within { border-bottom-color: var(--ink); }
+
+  .field + .field { margin-top: clamp(8px, 1.6vh, 15px); }
+
+  .field__control {
+    display: block;
+    width: 100%;
+    height: clamp(34px, 4.4vh, 41px);
+    padding: 0 28px 2px 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--ink);
+    font-family: var(--display);
+    font-style: italic;
+    font-size: clamp(22px, 2.8vh, 26px);
+    line-height: 1.2;
+    letter-spacing: -0.035em;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .field__control::placeholder { color: var(--ink-soft); opacity: 1; }
+
+  select.field__control { cursor: pointer; }
+  select.field__control:invalid { color: var(--ink-soft); }
+  select.field__control option { color: var(--ink); font-style: normal; font-family: var(--body); font-size: 16px; }
+
+  textarea.field__control {
+    resize: none;
+    overflow: hidden;
+    padding-top: 0.22em;
+  }
+
+  .field__caret {
+    position: absolute;
+    right: 0;
+    bottom: 9px;
+    width: 13px;
+    height: 7px;
+    color: var(--ink-soft);
+    pointer-events: none;
+  }
+
+  .field__control:focus-visible { outline: none; }
+  .field:has(.field__control:focus-visible) { box-shadow: 0 2px 0 -1px var(--ink); }
+
+  .form__submit {
+    display: block;
+    width: 100%;
+    height: clamp(44px, 5.4vh, 50px);
+    margin-top: clamp(24px, 4.8vh, 45px);
+    border: 1.5px solid var(--ink);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: clamp(15px, 1.95vh, 18px);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  .form__submit:hover { background: var(--ink); color: var(--lilac); }
+  .form__submit:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+  .form__status {
+    margin: 0;
+    height: 0;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    text-align: center;
+    transform: translateY(12px);
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    margin: -1px; padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ---------- Small screens ---------- */
+
+  @media (max-width: 600px) {
+    .enquiry {
+      height: auto;
+      min-height: 100vh;
+      min-height: 100svh;
+      padding-bottom: 0;
+    }
+    .enquiry__stage { padding: 20px 12px; }
+    .card__inner { padding: 36px 16px 40px; }
+    .card__title { font-size: clamp(40px, 11.6vw, 54px); }
+    .card__lede { font-size: 15px; margin-top: 20px; }
+    .form { margin-top: 26px; }
+    .field + .field { margin-top: 12px; }
+    .field__control { height: 40px; font-size: 23px; }
+    .form__submit { height: 48px; margin-top: 30px; font-size: 15px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .field, .form__submit { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<section class="enquiry" aria-labelledby="enquiry-title">
+  <div class="enquiry__stage">
+    <video
+      class="enquiry__media"
+      src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261010_084449_82f66a11-7dc4-4cbc-8c0f-0f8dacb0dc89.mp4"
+      poster="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261010_083358_db85bf08-3e5e-49cf-8907-16c70dec71e7.png"
+      data-final="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261010_053342_28f4e034-4cb1-40ce-8d67-4ab970b6b9dd.png"
+      autoplay muted playsinline preload="auto"
+      aria-hidden="true" tabindex="-1"></video>
+
+    <div class="card">
+      <div class="card__inner">
+        <h2 class="card__title" id="enquiry-title">Let’s connect, I’d love to&nbsp;hear from you</h2>
+        <p class="card__lede">Bookings are often made several months in advance, so I always welcome early enquiries. Please fill in the form below, and I’ll get back to you soon.</p>
+
+        <form class="form" id="enquiry-form" novalidate>
+          <label class="field">
+            <span class="visually-hidden">Name</span>
+            <input class="field__control" type="text" name="name" placeholder="Name" autocomplete="name" required>
+          </label>
+
+          <label class="field">
+            <span class="visually-hidden">Email</span>
+            <input class="field__control" type="email" name="email" placeholder="Email" autocomplete="email" required>
+          </label>
+
+          <label class="field">
+            <span class="visually-hidden">Is your baby born yet?</span>
+            <select class="field__control" name="born" required>
+              <option value="" disabled selected hidden>Is your baby born yet?</option>
+              <option>Yes</option>
+              <option>Not yet</option>
+            </select>
+            <svg class="field__caret" viewBox="0 0 13 7" aria-hidden="true"><path d="M0.5 0h12L7.4 6.2a1.2 1.2 0 0 1-1.8 0z" fill="currentColor"/></svg>
+          </label>
+
+          <label class="field">
+            <span class="visually-hidden">What are you looking for?</span>
+            <select class="field__control" name="service" required>
+              <option value="" disabled selected hidden>What are you looking for?</option>
+              <option>Pregnancy support</option>
+              <option>Birth support</option>
+              <option>Postnatal support</option>
+              <option>Not sure yet</option>
+            </select>
+            <svg class="field__caret" viewBox="0 0 13 7" aria-hidden="true"><path d="M0.5 0h12L7.4 6.2a1.2 1.2 0 0 1-1.8 0z" fill="currentColor"/></svg>
+          </label>
+
+          <label class="field">
+            <span class="visually-hidden">Tell me a little more</span>
+            <textarea class="field__control" name="message" rows="1" placeholder="Tell me a little more"></textarea>
+          </label>
+
+          <button class="form__submit" type="submit">Send enquiry</button>
+          <p class="form__status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var video = document.querySelector('.enquiry__media');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    // The painting paints itself once, then holds on the finished frame.
+    // With reduced motion, skip the reveal and show the finished painting.
+    if (reduce.matches) {
+      video.removeAttribute('autoplay');
+      video.pause();
+      video.poster = video.dataset.final;
+      video.removeAttribute('src');
+      video.load();
+    } else {
+      var p = video.play();
+      if (p && p.catch) p.catch(function () {});
+    }
+
+    var form = document.getElementById('enquiry-form');
+    var status = form.querySelector('.form__status');
+    var button = form.querySelector('.form__submit');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        status.textContent = 'Please add your name, a valid email and both selections.';
+        var firstInvalid = form.querySelector(':invalid');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+      status.textContent = '';
+      button.textContent = 'Enquiry sent';
+      button.disabled = true;
+    });
+  })();
+</script>
+</body>
+</html>
